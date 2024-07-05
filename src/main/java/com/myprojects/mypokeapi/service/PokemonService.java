@@ -3,7 +3,7 @@ package com.myprojects.mypokeapi.service;
 import com.myprojects.mypokeapi.dto.PokemonDTO;
 import com.myprojects.mypokeapi.entity.Pokemon;
 import com.myprojects.mypokeapi.repository.PokemonRepository;
-import com.myprojects.mypokeapi.util.AppConstants;
+//import com.myprojects.mypokeapi.util.AppConstants;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class PokemonService {
-    
+
     private final PokemonRepository pokemonRepository;
 
     public PokemonService(PokemonRepository pokemonRepository) {
