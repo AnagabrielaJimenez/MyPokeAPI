@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.myprojects</groupId>
 	<artifactId>MyPokeAPI</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>MyPokeAPI</name>
 	<description>MyPokeAPI</description>
 	<url/>
