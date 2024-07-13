@@ -4,7 +4,6 @@ import com.myprojects.mypokeapi.dto.PokemonDTO;
 import com.myprojects.mypokeapi.entity.Pokemon;
 import com.myprojects.mypokeapi.service.PokemonService;
 import com.myprojects.mypokeapi.util.AppConstants;
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +17,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/pokemons")
 public class PokemonController {
-
     private final PokemonService pokemonService;
 
     public PokemonController(PokemonService pokemonService) {
@@ -28,9 +26,11 @@ public class PokemonController {
     @GetMapping
     public ResponseEntity<Page<Pokemon>> getAllPokemons(
             @RequestParam(defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
-            @RequestParam(defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
+            @RequestParam(defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Pokemon.Type type) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Pokemon> resultPage = pokemonService.getAllPokemons(pageable);
+        Page<Pokemon> resultPage = pokemonService.getAllPokemons(pageable, name, type);
         return new ResponseEntity<>(resultPage, HttpStatus.OK);
     }
 
