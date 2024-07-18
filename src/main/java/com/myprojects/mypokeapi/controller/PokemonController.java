@@ -1,61 +1,46 @@
 package com.myprojects.mypokeapi.controller;
 
-import com.myprojects.mypokeapi.dto.PokemonDTO;
-import com.myprojects.mypokeapi.entity.Pokemon;
 import com.myprojects.mypokeapi.service.PokemonService;
-import com.myprojects.mypokeapi.util.AppConstants;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import com.myprojects.mypokeapi.entity.Pokemon;
 import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/pokemons")
+@RequestMapping("/api/pokemon")
 public class PokemonController {
+
     private final PokemonService pokemonService;
 
+    @Autowired
     public PokemonController(PokemonService pokemonService) {
         this.pokemonService = pokemonService;
     }
 
     @GetMapping
-    public ResponseEntity<Page<Pokemon>> getAllPokemons(
-            @RequestParam(defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
-            @RequestParam(defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) Pokemon.Type type) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Pokemon> resultPage = pokemonService.getAllPokemons(pageable, name, type);
-        return new ResponseEntity<>(resultPage, HttpStatus.OK);
+    public ResponseEntity<List<Pokemon>> getAllPokemon() {
+        List<Pokemon> pokemons = pokemonService.getAllPokemon();
+        return ResponseEntity.ok(pokemons);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Pokemon> getPokemonById(@PathVariable Long id) {
-        Optional<Pokemon> pokemon = pokemonService.getPokemonById(id);
-        return pokemon.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Pokemon pokemon = pokemonService.getPokemonById(id);
+        return ResponseEntity.ok(pokemon);
     }
 
     @PostMapping
-    public ResponseEntity<Pokemon> createPokemon(@Valid @RequestBody PokemonDTO pokemonDTO) {
-        Pokemon createdPokemon = pokemonService.createPokemon(pokemonDTO);
-        return new ResponseEntity<>(createdPokemon, HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Pokemon> updatePokemon(@PathVariable Long id, @Valid @RequestBody PokemonDTO pokemonDTO) {
-        Pokemon updatedPokemon = pokemonService.updatePokemon(id, pokemonDTO);
-        return new ResponseEntity<>(updatedPokemon, HttpStatus.OK);
+    public ResponseEntity<Pokemon> createPokemon(@RequestBody Pokemon pokemon) {
+        Pokemon savedPokemon = pokemonService.savePokemon(pokemon);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPokemon);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePokemon(@PathVariable Long id) {
         pokemonService.deletePokemon(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 }
