@@ -1,20 +1,20 @@
-# PokeAPI - Proyecto con Spring Boot
+# PokeAPI - Spring Boot Project
 
-## Descripción
+## Description
 
-PokeAPI es un proyecto desarrollado con Spring Boot que simula una API para gestionar Pokémon, entrenadores y batallas, proporcionando funcionalidades similares a los juegos de Pokémon. Este proyecto demuestra conocimientos en el framework Spring y en el desarrollo de aplicaciones backend robustas y escalables.
+PokeAPI is a project developed with Spring Boot that simulates an API to manage Pokémon, trainers, and battles, providing functionalities similar to Pokémon games. This project demonstrates knowledge in the Spring framework and in developing robust and scalable backend applications.
 
-## Funcionalidades
+## Features
 
-- **Gestión de Pokémon**: CRUD para Pokémon.
-- **Gestión de Entrenadores**: CRUD para entrenadores.
-- **Selección de Pokémon Inicial Basado en Región**.
-- **Captura de Pokémon Salvajes**.
-- **Batallas entre Entrenadores y Pokémon Salvajes**.
-- **Mejora de Habilidades Mediante Combates**.
-- **Autenticación y Autorización con JWT**.
+- **Pokémon Management**: CRUD operations for Pokémon.
+- **Trainer Management**: CRUD operations for trainers.
+- **Initial Pokémon Selection Based on Region**.
+- **Wild Pokémon Capture**.
+- **Battles between Trainers and Wild Pokémon**.
+- **Skill Improvement through Battles**.
+- **Authentication and Authorization with JWT**.
 
-## Tecnologías Utilizadas
+## Technologies Used
 
 - **Java**
 - **Spring Boot**
@@ -25,17 +25,16 @@ PokeAPI es un proyecto desarrollado con Spring Boot que simula una API para gest
 - **Flyway**
 - **Docker**
 
-## Requisitos Previos
+## Prerequisites
 
-- **Java 11 o superior**: [Descargar Java](https://www.oracle.com/java/technologies/javase-downloads.html)
-- **Maven**: [Descargar Maven](https://maven.apache.org/download.cgi)
-- **Docker**: [Descargar Docker](https://www.docker.com/products/docker-desktop)
+- **Java 11 or higher**: [Download Java](https://www.oracle.com/java/technologies/javase-downloads.html)
+- **Maven**: [Download Maven](https://maven.apache.org/download.cgi)
+- **Docker**: [Download Docker](https://www.docker.com/products/docker-desktop)
 
-## Configuración del Proyecto
+## Project Setup
 
-### Clonar el Repositorio
+### Clone the Repository
 
 ```bash
-git clone https://github.com/AnagabrielaJimenez/MyPokeAPI.git
-cd MyPokeAPI
-```
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
